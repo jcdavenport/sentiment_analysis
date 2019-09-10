@@ -1,0 +1,12 @@
+__pycache__/
+data/
+venv/
+.venv
+.git/
+config.py
+data/positive/stream_happy.json
+data/positive/happy_output.json
+data/positive/happy2text.txt
+data/negative/stream_sad.json
+data/negative/sad_output.json
+data/negative/sad2text.txt
