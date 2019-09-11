@@ -68,6 +68,7 @@ $ <code>cd sentiment_analysis</code>
  ![alt text](misc/cleaner1.png "cleaner.py")   
  change to:  
  ![alt text](misc/cleaner2.png "cleaner.py")  
+ <br></br>  
  Now run:  
  (venv)$ <code>python preprocess.py</code>  
  (venv)$ <code>python cleaner.py</code>  
