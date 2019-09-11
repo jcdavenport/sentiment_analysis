@@ -1,25 +1,14 @@
 #!/usr/bin/env python3
 
-# To run this code, first edit config.py with your configuration, then:
-# 1. IMPORTANT! Create a config.py file that contains your own Twitter
-# API development credentials, i.e.:
-# consumer_key = 'your_consumer_key'
-# consumer_secret = 'your_consumer_key'
-# access_token = 'your_access_token'
-# access_secret = 'your_access_secret'
+# Based on Marco Bonzanini's blog "Minig Twitter Data with Python":
+# https://marcobonzanini.com/2015/03/02/mining-twitter-data-with-python-part-1/
 #
-# 2. create a venv that uses python3.x, and install requirements.txt
+# Modified with customized functions and
+# tweaked for simplified execution by:
+# Joshua Davenport (Systems Developer)
 #
-# USE:
-# 3. python tweetminer.py -q happy
-# 4. python preprocess.py
-# 5. python cleaner.py
-#
-# It will produce the list of tweets for the query "happy"
-# in the file data/positive/stream_happy.json
-#
-# 6. Repeat steps 3-5 to process 'sad' data, i.e.:
-# python tweetminer.py -q sad
+# For instructions on use, refer to the README.md at:
+# https://github.com/jcdavenport/sentiment_analysis
 
 import tweepy
 from tweepy import Stream
@@ -35,7 +24,6 @@ import nltk.downloader
 print("Downloading nltk packages...")
 nltk.download('punkt')
 nltk.download('stopwords')
-# nltk.download('tokenize')
 print("DONE!\nNow launching Twitter live stream collector (CTRL+C to stop)...")
 time.sleep(2)
 

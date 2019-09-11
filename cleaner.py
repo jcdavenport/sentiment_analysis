@@ -1,5 +1,9 @@
 #!/usr/bin/env python3
 
+__author__ = 'Joshua Davenport'
+__license__ = 'MIT'
+__email__ = 'jxdx_dev@protonmail.com'
+
 import os
 import re
 import nltk
