@@ -55,20 +55,19 @@ $ <code>cd sentiment_analysis</code>
  Here, the live Twitter stream is accessed and only tweets matching the query "sad" will be collected.  
  A file will be automatically created to store the raw .json data, located here:  
  "data/negative/stream_sad.json"  
- <>    
+ <br></br>    
  **IMPORTANT** - Before re-running the commands from step 5, view the source code for "preprocess
  .py" and "cleaner.py" and make the following changes:  
- <>  
- preprocess.py  
+ <br></br>  
+ **preprocess.py**  
  ![alt text](misc/preprocess1.png "preprocess.py")   
  change to:  
  ![alt text](misc/preprocess2.png "preprocess.py")
  <br></br>  
- cleaner.py  
+ **cleaner.py**  
  ![alt text](misc/cleaner1.png "cleaner.py")   
  change to:  
  ![alt text](misc/cleaner2.png "cleaner.py")  
- <br></br>  
  Now run:  
  (venv)$ <code>python preprocess.py</code>  
  (venv)$ <code>python cleaner.py</code>  
