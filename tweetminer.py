@@ -62,13 +62,14 @@ class MyListener(StreamListener):
 
     # def __init__(self, data_dir, query):
     def __init__(self, query):
+        query_fname = format_filename(query)
+
         # hardcoded values for file locations
-        if query == 'happy':
+        if query_fname == 'happy':
             data_dir = 'positive'
         else:
             data_dir = 'negative'
 
-        query_fname = format_filename(query)
         self.outfile = "data/%s/stream_%s.json" % (data_dir, query_fname)
 
     def on_data(self, data):

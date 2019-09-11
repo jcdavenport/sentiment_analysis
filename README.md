@@ -16,7 +16,7 @@ consumer_secret = 'your_consumer_key'
 access_token = 'your_access_token'
 access_secret = 'your_access_secret'
 ```
-(Obviously your actual access tokens will need to be placed in their proper spot *within* the single quotes)  
+(Obviously your actual consumer/access data will need to be placed in their proper spot *within* the single quotes)  
 <br>  
 
 ---  
@@ -38,7 +38,8 @@ $ <code>cd sentiment_analysis</code>
  
  4. Start harvesting raw tweet data from the live Twitter stream:  
  (venv)$ <code>python tweetminer.py -q happy</code>  
- **note**:  The "-q" option specifies a specific query or filter for the tweets being collected.  
+ The "-q" option specifies a specific query or filter for the tweets being collected. Let this run for a few minutes
+ , then press "**CTRL+C**" to stop execution.
  In this example, the live Twitter stream is accessed and only tweets matching the query "happy" will be collected.  
  A file will be automatically created to store the raw .json data, located here:  
  "data/positive/stream_happy.json"  
@@ -47,4 +48,22 @@ $ <code>cd sentiment_analysis</code>
  (venv)$ <code>python preprocess.py</code>  
  (venv)$ <code>python cleaner.py</code>  
  (venv)$ <code>head data/positive/train/happy_trainer.txt</code>  
+ **note**:  The last command shows just a sample of the cleaned data.  
+ 
+ 6. Repeat steps 4 and 5 with a query of "sad"  
+ (venv)$ <code>python tweetminer.py -q sad</code>  
+ Here, the live Twitter stream is accessed and only tweets matching the query "sad" will be collected.  
+ A file will be automatically created to store the raw .json data, located here:  
+ "data/negative/stream_sad.json"  
+ <br>  
+ ***IMPORTANT** - Before re-running the commands from step 5, view the source code for "preprocess
+ .py" and "cleaner.py" and make the following changes:  
+ <br>  
+ preprocess.py  
+ ![alt text](misc/preprocess1.png "preprocess.py")   
+ <br>  
+ cleaner.py  
+ ![alt text](misc/cleaner1.png "cleaner.py")   
+ 
+ 
 <br>
