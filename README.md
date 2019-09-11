@@ -58,31 +58,31 @@ $ <code>cd sentiment_analysis</code>
  <>    
  **IMPORTANT** - Before re-running the commands from step 5, view the source code for "preprocess
  .py" and "cleaner.py" and make the following changes:  
- <br>  
+ <>  
  preprocess.py  
  ![alt text](misc/preprocess1.png "preprocess.py")   
  change to:  
  ![alt text](misc/preprocess2.png "preprocess.py")
- <br>  
+ <br></br>  
  cleaner.py  
  ![alt text](misc/cleaner1.png "cleaner.py")   
  change to:  
  ![alt text](misc/cleaner2.png "cleaner.py")  
- <br>  
+ <br></br>  
  Now run:  
  (venv)$ <code>python preprocess.py</code>  
  (venv)$ <code>python cleaner.py</code>  
  (venv)$ <code>head data/negative/train/sad_trainer.txt</code>  
  **note**:  The last command shows just a sample of the cleaned data.  
- <br>
+ <br></br>
  The 2 files that have been cleaned can now be used as training files for a sentiment analysis machine learning
   system.  The purpose is to train AI to tell the difference between positive and negative sentiments people may have
    on a particular subject.  
     
- <br>
+ <br></br>
    
 ##### *This is a work in progress.  I am developing methods to simplify the current process, and to implement the actual machine learning algorithm.
  
  
  
-<br>
+<br></br>
