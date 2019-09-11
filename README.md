@@ -17,8 +17,8 @@ access_token = 'your_access_token'
 access_secret = 'your_access_secret'
 ```
 (Obviously your actual access tokens will need to be placed in their proper spot *within* the single quotes)  
-
 <br>  
+
 ---  
 #### INSTRUCTIONS FOR USING THIS TOOL:  
 (The following commands only apply to Linux systems, but will also work in Windows with the Git Bash or Cmder terminal
