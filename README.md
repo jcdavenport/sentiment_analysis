@@ -56,7 +56,7 @@ $ <code>cd sentiment_analysis</code>
  A file will be automatically created to store the raw .json data, located here:  
  "data/negative/stream_sad.json"  
  <br>  
- ***IMPORTANT** - Before re-running the commands from step 5, view the source code for "preprocess
+ **IMPORTANT** - Before re-running the commands from step 5, view the source code for "preprocess
  .py" and "cleaner.py" and make the following changes:  
  <br>  
  preprocess.py  
