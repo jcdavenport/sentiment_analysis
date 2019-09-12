@@ -62,7 +62,7 @@ def clean(filename):
             for li in fdata:
                 if len(li) > 6:
                     text1 = li.lstrip()
-                    # checking for duplicate lines
+                    # checking for duplicate lines (only checks adjacent duplicates)
                     if text2 != text1:
                         op.write(' '.join([w.lower() for w in word_tokenize(text1)]) + '\n')
                         text2 = text1
