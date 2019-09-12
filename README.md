@@ -32,7 +32,7 @@ $ <code>cd sentiment_analysis</code>
  
  3. Create/activate a venv that uses python3, and install requirements.txt  
  $ <code>virtualenv -p /usr/bin/python3 venv</code>  
- $ <code>source venv/bin/activate</code>&nbsp;&nbsp;&nbsp;(use <code>source deactivate</code> when you're done using this
+ $ <code>source venv/bin/activate</code>&nbsp;&nbsp;&nbsp;(use <code>deactivate</code> when you're done using this
   tool)  
  (venv)$ <code>pip install -r requirements.txt</code>  
  
@@ -75,7 +75,7 @@ $ <code>cd sentiment_analysis</code>
  (venv)$ <code>head data/negative/train/sad_trainer.txt</code>  
  **note**:  The last command shows just a sample of the cleaned data.  
  <br></br>  
- **Run <code>source deactivate</code> to exit your virtual environment and return to your default interpreter.**  
+ **Run <code>deactivate</code> to exit your virtual environment and return to your default interpreter.**  
  <br></br>
  The 2 files that have been cleaned can now be used as training files for a sentiment analysis machine learning
   system.  The purpose is to train AI to tell the difference between positive and negative sentiments people may have

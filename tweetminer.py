@@ -23,6 +23,7 @@ import nltk.downloader
 
 print("Downloading nltk packages...")
 nltk.download('punkt')
+nltk.download('words')
 nltk.download('stopwords')
 print("DONE!\nNow launching Twitter live stream collector (CTRL+C to stop)...")
 time.sleep(2)
