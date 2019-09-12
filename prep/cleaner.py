@@ -12,17 +12,17 @@ from nltk import word_tokenize
 
 # ######## ONLY MODIFY THESE 2 VARIABLES! #########
 
-file = 'data/positive/happy2text.txt'
+file = '../data/positive/happy2text.txt'
 # file = 'data/negative/sad2text.txt'
 
-newfile = 'data/positive/train/happy_trainer.txt'
+newfile = '../data/positive/train/happy_trainer.txt'
 # newfile = 'data/negative/train/sad_trainer.txt'
 
 # ############# END OF MODIFICATIONS ##############
 
 
 words = set(nltk.corpus.words.words())
-tempfile = 'data/.tmp.txt'
+tempfile = '../data/.tmp.txt'
 
 
 def clean(filename):

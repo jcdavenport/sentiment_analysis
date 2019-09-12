@@ -21,6 +21,8 @@ import config
 import json
 import nltk.downloader
 
+from prep import preprocess, cleaner
+
 print("Downloading nltk packages...")
 nltk.download('punkt')
 nltk.download('words')
