@@ -96,14 +96,14 @@ $ <code>cd sentiment_analysis</code>
  .py" and "cleaner.py" and make the following changes:  
  <br></br>  
  * **prep/preprocess.py**  
- ![alt text](misc/preprocess1.png "preprocess.py")   
+ ![alt text](\.misc/preprocess1.png "preprocess.py")   
  change to:  
- ![alt text](misc/preprocess2.png "preprocess.py")  
+ ![alt text](\.misc/preprocess2.png "preprocess.py")  
  <br></br>  
  * **prep/cleaner.py**  
- ![alt text](misc/cleaner1.png "cleaner.py")   
+ ![alt text](\.misc/cleaner1.png "cleaner.py")   
  change to:  
- ![alt text](misc/cleaner2.png "cleaner.py")  
+ ![alt text](\.misc/cleaner2.png "cleaner.py")  
  <br></br>  
  Now run:  
  (Try running in PyCharm if you get errors executing in terminal)   

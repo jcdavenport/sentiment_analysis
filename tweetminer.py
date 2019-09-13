@@ -19,6 +19,7 @@ import argparse
 import string
 import config
 import json
+import sys
 import nltk.downloader
 
 from prep import preprocess, cleaner
@@ -63,7 +64,7 @@ class MyListener(StreamListener):
         #     data_dir = 'negative'
         #     self.outfile = "data/%s/stream_%s.json" % (data_dir, query_fname)
 
-        self.outfile = "data/%s/stream_%s.json" % (s_fname, q_fname)
+        self.outfile = "data/%s/mined/stream_%s.json" % (s_fname, q_fname)
 
     def on_data(self, data):
         try:
@@ -123,38 +124,64 @@ if __name__ == '__main__':
     senti_fname = format_filename(args.senti)
 
     # prepare file names for modules
-    input_file = "data/%s/stream_%s.json" % (senti_fname, query_fname)
-    output_file = "data/%s/%s_output.json" % (senti_fname, query_fname)
-    text_file = "data/%s/%s2text.txt" % (senti_fname, query_fname)
-    new_file = "data/%s/%s_trainer.txt" % (senti_fname, query_fname)
+    input_file = "data/%s/mined/stream_%s.json" % (senti_fname, query_fname)
+    output_file = "data/%s/mined/%s_output.json" % (senti_fname, query_fname)
+    text_file = "data/%s/mined/%s2text.txt" % (senti_fname, query_fname)
+    new_file = "data/%s/train/%s_trainer.txt" % (senti_fname, query_fname)
+
+    # TODO: Add a multithreaded process to run (and stop)
+    #       the stream data miner, and process files
+    #       simultaneously.
 
     try:
         twitter_stream = Stream(auth, MyListener(senti_fname, query_fname))
         # twitter_stream = Stream(auth, MyListener(args.query))
         twitter_stream.filter(track=[args.query])
     except KeyboardInterrupt:
-        ans = input("\nData mining has been stopped!\n"
-                    "(Enter '0' to exit): ")
-        if int(ans) is 0:
-            print("Goodbye!")
-
-            # for testing
-            print("input_file = " + input_file)
-            print("output_file = " + output_file)
-            print("text_file = " + text_file)
-            print("new_file = " + new_file)
-
-            exit()
-        else:
-            # exit no matter what user enters
-            exit()
+        # ans = input("\nData mining has been stopped!\n"
+        #             "(Enter '0' to exit): ")
+        # if int(ans) is 0:
+        #     print("Goodbye!")
+        #
+        #     # for testing
+        #     print("input_file = " + input_file)
+        #     print("output_file = " + output_file)
+        #     print("text_file = " + text_file)
+        #     print("new_file = " + new_file)
+        #
+        #     exit()
+        # else:
+        #     # exit no matter what user enters
+        #     exit()
 
         # USED IN NEXT VERSION
         # ans = 1
-        # ans = input("\nData mining has been stopped!\n\nWhat would you like to do?\n"
-        #             "(Enter '1' to process data, or '0' to exit)[1]: ")
-        # if ans == 0:
-        #     print("Goodbye!")
-        #     exit()
-        # else:
-        #     preprocess.tcleaner()
+        ans = input("\nData mining has been stopped!\n\nWhat would you like to do?\n"
+                    "(Enter '1' to process data, or '0' to exit): ")
+        if int(ans) is 1:
+            # process the data
+            try:
+                print("\nProcessing the collected data...")
+                preprocess.tcleaner(input_file, output_file, text_file)
+                time.sleep(2)
+                print("DONE!")
+                time.sleep(1)
+            except BaseException as e:
+                print("Error on_data: %s" % str(e))
+
+            # clean the data
+            try:
+                print("\nCleaning the processed data...")
+                cleaner.clean(text_file, new_file)
+                time.sleep(2)
+                print("DONE!")
+                time.sleep(1)
+
+            except BaseException as e:
+                print("Error on_data: %s" % str(e))
+
+            print("\nThe training file can be found in '" + new_file + "'")
+            sys.exit()
+        else:
+            print("Goodbye!")
+            sys.exit()

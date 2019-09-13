@@ -4,11 +4,11 @@ venv/
 .idea/
 .venv
 config.py
-data/positive/*.json
-data/positive/*.txt
+data/positive/mined/*.json
+data/positive/mined/*.txt
 data/positive/train/*.txt
 data/positive/test/*.txt
-data/negative/*.json
-data/negative/*.txt
+data/negative/mined/*.json
+data/negative/mined/*.txt
 data/negative/train/*.txt
 data/negative/test/*.txt
