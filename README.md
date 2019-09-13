@@ -122,15 +122,17 @@ $ <code>cd sentiment_analysis</code>
    
 ##### *This is a work in progress.  I am developing methods to simplify the current process, and to implement the actual machine learning algorithm.  
 
-  
+
+<br></br>  
+
+---  
+
 Still Needed:  
  -> Create branches for different versions  
  -> Refactor source code so no user interaction is required beyond initial execution, i.e. text processing will
   automatically run in sequence after the data miner has finished.  
  -> Allow user to enter a limit value to specify the amount of data to collect.  CTRL+C can be used to stop collection
    if a data limit is not specified.  
-<br></br>  
----    
 
 
 
