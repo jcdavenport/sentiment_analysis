@@ -27,11 +27,15 @@ Once an app is registered and approved (approval usually takes around a day or s
  interact with the Twitter API will be generated.  
  
  These credentials (4 total, labeled as the variables below) will need to be placed into a file called config.py.  So
-  create a new file in the project root directory called "config.py".  
+  create a new file in the project root directory called "config.py" i.e.:  
   ```
 sentiment_analysis/
+    |---.misc/
+    |---analyze/
     |---data/
-    |---misc/
+    |    |---negative/
+    |    └---positive/
+    |    
     |---prep/
     |    |---cleaner.py
     |    |---preprocess.py
