@@ -120,8 +120,9 @@ $ <code>cd sentiment_analysis</code>
     
  <br></br>
    
-##### This is a work in progress.  I am developing methods to simplify the current process, and to implement the actual machine learning algorithm.  
+##### *This is a work in progress.  I am developing methods to simplify the current process, and to implement the actual machine learning algorithm.  
 
+  
 Still Needed:  
  -> Create branches for different versions  
  -> Refactor source code so no user interaction is required beyond initial execution, i.e. text processing will
