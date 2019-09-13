@@ -80,8 +80,9 @@ $ <code>cd sentiment_analysis</code>
  "data/positive/stream_happy.json"  
  
  5. Run the preprocess and cleaner tools to sanitize the raw data:  
- (venv)$ <code>python preprocess.py</code>  
- (venv)$ <code>python cleaner.py</code>  
+ (Try running in PyCharm if you get errors executing in terminal)  
+ (venv)$ <code>python prep/preprocess.py</code>  
+ (venv)$ <code>python prep/cleaner.py</code>  
  (venv)$ <code>head data/positive/train/happy_trainer.txt</code>  
  **note**:  The last command shows just a sample of the cleaned data.  
  
