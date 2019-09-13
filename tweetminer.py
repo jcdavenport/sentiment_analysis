@@ -40,28 +40,30 @@ def get_parser():
                         help="Query/Filter",
                         default='-')
 
-    # Directory argument is currently hardcoded!!
-    # parser.add_argument("-d",
-    #                     "--data-dir",
-    #                     dest="data_dir",
-    #                     help="Output/Data Directory")
+    parser.add_argument("-s",
+                        "--sentiment",
+                        dest="senti",
+                        help="positive/negative")
     return parser
 
 
 class MyListener(StreamListener):
     """Custom StreamListener for streaming data."""
 
-    # def __init__(self, data_dir, query):
-    def __init__(self, query):
-        query_fname = format_filename(query)
+    # def __init__(self, query):
+    def __init__(self, senti, query):
+        q_fname = query
+        s_fname = senti
 
         # hardcoded values for file locations
-        if query_fname == 'happy':
-            data_dir = 'positive'
-        else:
-            data_dir = 'negative'
+        # if query_fname is 'happy':
+        #     data_dir = 'positive'
+        #     self.outfile = "data/%s/stream_%s.json" % (data_dir, query_fname)
+        # else:
+        #     data_dir = 'negative'
+        #     self.outfile = "data/%s/stream_%s.json" % (data_dir, query_fname)
 
-        self.outfile = "data/%s/stream_%s.json" % (data_dir, query_fname)
+        self.outfile = "data/%s/stream_%s.json" % (s_fname, q_fname)
 
     def on_data(self, data):
         try:
@@ -117,15 +119,31 @@ if __name__ == '__main__':
     auth.set_access_token(config.access_token, config.access_secret)
     api = tweepy.API(auth)
 
+    query_fname = format_filename(args.query)
+    senti_fname = format_filename(args.senti)
+
+    # prepare file names for modules
+    input_file = "data/%s/stream_%s.json" % (senti_fname, query_fname)
+    output_file = "data/%s/%s_output.json" % (senti_fname, query_fname)
+    text_file = "data/%s/%s2text.txt" % (senti_fname, query_fname)
+    new_file = "data/%s/%s_trainer.txt" % (senti_fname, query_fname)
+
     try:
-        # twitter_stream = Stream(auth, MyListener(args.data_dir, args.query))
-        twitter_stream = Stream(auth, MyListener(args.query))
+        twitter_stream = Stream(auth, MyListener(senti_fname, query_fname))
+        # twitter_stream = Stream(auth, MyListener(args.query))
         twitter_stream.filter(track=[args.query])
     except KeyboardInterrupt:
         ans = input("\nData mining has been stopped!\n"
                     "(Enter '0' to exit): ")
         if int(ans) is 0:
             print("Goodbye!")
+
+            # for testing
+            print("input_file = " + input_file)
+            print("output_file = " + output_file)
+            print("text_file = " + text_file)
+            print("new_file = " + new_file)
+
             exit()
         else:
             # exit no matter what user enters
