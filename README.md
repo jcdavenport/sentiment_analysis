@@ -105,7 +105,7 @@ $ <code>cd sentiment_analysis</code>
  change to:  
  ![alt text](misc/cleaner2.png "cleaner.py")  
  <br></br>  
- Now run: 
+ Now run:  
  (Try running in PyCharm if you get errors executing in terminal)   
  (venv)$ <code>python prep/preprocess.py</code>  
  (venv)$ <code>python prep/cleaner.py</code>  
