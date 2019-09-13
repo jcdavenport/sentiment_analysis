@@ -67,7 +67,10 @@ def clean(filename):
                         op.write(' '.join([w.lower() for w in word_tokenize(text1)]) + '\n')
                         text2 = text1
         os.remove(tempfile)
+    return
 
 
 if __name__ == '__main__':
+    print("Cleaning the processed data...")
     clean(file)
+    print("DONE!")

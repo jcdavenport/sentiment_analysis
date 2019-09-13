@@ -69,6 +69,7 @@ class MyListener(StreamListener):
                 f.write(data)
                 print(data)
                 return True
+
         except BaseException as e:
             print("Error on_data: %s" % str(e))
             time.sleep(5)
@@ -116,6 +117,26 @@ if __name__ == '__main__':
     auth.set_access_token(config.access_token, config.access_secret)
     api = tweepy.API(auth)
 
-    # twitter_stream = Stream(auth, MyListener(args.data_dir, args.query))
-    twitter_stream = Stream(auth, MyListener(args.query))
-    twitter_stream.filter(track=[args.query])
+    try:
+        # twitter_stream = Stream(auth, MyListener(args.data_dir, args.query))
+        twitter_stream = Stream(auth, MyListener(args.query))
+        twitter_stream.filter(track=[args.query])
+    except KeyboardInterrupt:
+        ans = input("\nData mining has been stopped!\n"
+                    "(Enter '0' to exit): ")
+        if int(ans) is 0:
+            print("Goodbye!")
+            exit()
+        else:
+            # exit no matter what user enters
+            exit()
+
+        # USED IN NEXT VERSION
+        # ans = 1
+        # ans = input("\nData mining has been stopped!\n\nWhat would you like to do?\n"
+        #             "(Enter '1' to process data, or '0' to exit)[1]: ")
+        # if ans == 0:
+        #     print("Goodbye!")
+        #     exit()
+        # else:
+        #     preprocess.tcleaner()

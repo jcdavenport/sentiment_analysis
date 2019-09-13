@@ -1,6 +1,6 @@
 # Sentiment Analysis
 **Text pre-processing, and sentiment analysis using datasets captured from Twitter live stream.**  
-:metal:  
+:sunglasses:  
 Currently, this tool will produce 2 text files:  
 The *first* file will contain tweets with a generally **positive** sentiment, such as "I am happy".  
 The *second* file will contain tweets with a generally **negative** sentiment, like "I am sad".  

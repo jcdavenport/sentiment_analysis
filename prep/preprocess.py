@@ -30,9 +30,16 @@ def to_text():
             # print(tweet['text'])
             with open(textfile, 'a') as txt:
                 txt.writelines(tweet['text'] + '\n')
+    return
 
 
 def tcleaner():
+    print("Processing the collected data...")
     tc = TweetCleaner(remove_stop_words=True, remove_retweets=False)
     tc.clean_tweets(input_file, output_file)
     to_text()
+    print("DONE!")
+
+
+if __name__ == '__main__':
+    tcleaner()
