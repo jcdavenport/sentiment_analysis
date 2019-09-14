@@ -10,40 +10,15 @@ import nltk
 
 from nltk import word_tokenize
 
-# ######## ONLY MODIFY THESE 2 VARIABLES! #########
-
-# file = '../data/positive/happy2text.txt'
-# file = 'data/negative/sad2text.txt'
-
-# newfile = '../data/positive/train/happy_trainer.txt'
-# newfile = 'data/negative/train/sad_trainer.txt'
-
-# ############# END OF MODIFICATIONS ##############
-
-
 words = set(nltk.corpus.words.words())
-# tempfile = '\.tmp.txt'
 
 
+#######################################################
+# [Cleaning the text file]                            #
+# Uses multiple passes to perform additional stemming #
+# and removal of undesired whitespace.                #
+#######################################################
 def clean(txt_file, n_file):
-    # txt_file1 = '../'+txt_file
-    # n_file1 = '../'+n_file
-
-    # FOR TESTING #
-    # inp = input("TESTING: enter '0' to exit: ")
-    #
-    # if int(inp) is 0:
-    #     print("Goodbye!")
-    #
-    #     # for testing
-    #     print("txt_file1 = " + txt_file1)
-    #     print("n_file1 = " + n_file1)
-    #
-    #     exit()
-    # else:
-    #     # exit no matter what user enters
-    #     exit()
-    # END TEST #
 
     if not os.path.isfile(txt_file):
         print("{} does not exist ".format(txt_file))
@@ -90,15 +65,11 @@ def clean(txt_file, n_file):
             if len(li) > 6:
                 text1 = li.lstrip()
 
+                # TODO:
+                #  Create function to check for any duplicates in fext file
+
                 # checking for duplicate lines (only checks adjacent duplicates)
                 if text2 != text1:
                     op.write(' '.join([w.lower() for w in word_tokenize(text1)]) + '\n')
                     text2 = text1
-    # os.remove(tempfile)
     return
-
-
-# if __name__ == '__main__':
-#     print("Cleaning the processed data...")
-#     clean(file)
-#     print("DONE!")

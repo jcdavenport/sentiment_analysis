@@ -10,6 +10,20 @@
 # For instructions on use, refer to the README.md at:
 # https://github.com/jcdavenport/sentiment_analysis
 
+# TODO:
+#  Add option to specify limit on lines of data to collect.
+
+# TODO:
+#  Add option to import a previously captured .json file for processing.
+
+# TODO:
+#  Add option to collect and store data in a database.
+
+# TODO:
+#  Add a multithreaded process to run (and stop)
+#  the stream data miner, and process files
+#  simultaneously.
+
 import tweepy
 from tweepy import Stream
 from tweepy import OAuthHandler
@@ -50,19 +64,9 @@ def get_parser():
 
 class MyListener(StreamListener):
     """Custom StreamListener for streaming data."""
-
-    # def __init__(self, query):
     def __init__(self, senti, query):
         q_fname = query
         s_fname = senti
-
-        # hardcoded values for file locations
-        # if query_fname is 'happy':
-        #     data_dir = 'positive'
-        #     self.outfile = "data/%s/stream_%s.json" % (data_dir, query_fname)
-        # else:
-        #     data_dir = 'negative'
-        #     self.outfile = "data/%s/stream_%s.json" % (data_dir, query_fname)
 
         self.outfile = "data/%s/mined/stream_%s.json" % (s_fname, q_fname)
 
@@ -81,6 +85,7 @@ class MyListener(StreamListener):
     def on_error(self, status):
         print(status)
         return True
+# end of MyListener class
 
 
 def format_filename(fname):
@@ -129,33 +134,15 @@ if __name__ == '__main__':
     text_file = "data/%s/mined/%s2text.txt" % (senti_fname, query_fname)
     new_file = "data/%s/train/%s_trainer.txt" % (senti_fname, query_fname)
 
-    # TODO: Add a multithreaded process to run (and stop)
-    #       the stream data miner, and process files
-    #       simultaneously.
-
     try:
+        # start the data mining
         twitter_stream = Stream(auth, MyListener(senti_fname, query_fname))
-        # twitter_stream = Stream(auth, MyListener(args.query))
         twitter_stream.filter(track=[args.query])
-    except KeyboardInterrupt:
-        # ans = input("\nData mining has been stopped!\n"
-        #             "(Enter '0' to exit): ")
-        # if int(ans) is 0:
-        #     print("Goodbye!")
-        #
-        #     # for testing
-        #     print("input_file = " + input_file)
-        #     print("output_file = " + output_file)
-        #     print("text_file = " + text_file)
-        #     print("new_file = " + new_file)
-        #
-        #     exit()
-        # else:
-        #     # exit no matter what user enters
-        #     exit()
 
-        # USED IN NEXT VERSION
-        # ans = 1
+    # Listening for CTRL+C to stop data miner and either:
+    # - continue to the processing phase, or
+    # - exit the program
+    except KeyboardInterrupt:
         ans = input("\nData mining has been stopped!\n\nWhat would you like to do?\n"
                     "(Enter '1' to process data, or '0' to exit): ")
         if int(ans) is 1:

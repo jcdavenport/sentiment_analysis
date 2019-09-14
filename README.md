@@ -76,69 +76,48 @@ $ <code>cd sentiment_analysis</code>
  <b>!! Make sure the "config.py" file has been created as mentioned in the PREREQ !!</b>  
  
  4. Start harvesting raw tweet data from the live Twitter stream:  
- (venv)$ <code>python tweetminer.py -q happy</code>  
- The "-q" option specifies a specific query or filter for the tweets being collected. Let this run for a few minutes
- , then press "**CTRL+C**" to stop execution.
- In this example, the live Twitter stream is accessed and only tweets matching the query "happy" will be collected.  
+ (venv)$ <code>python tweetminer.py -q happy -s positive</code>  
+ -The "-q" option specifies a specific query or filter for the tweets being collected.  
+ -The "-s" specifies the sentiment associated with the query (either positive or negative).  
+ 
+ 5. Let this run for a few minutes, then press "**CTRL+C**" to stop execution.  
+ Follow the prompts in the terminal to either continue to processing, or exit the program.  
+ In this example, the live Twitter stream is accessed, and only tweets matching the query "happy" will be collected. 
  A file will be automatically created to store the raw .json data, located here:  
- "data/positive/stream_happy.json"  
+ "data/positive/mined/stream_happy.json"  
  
- 5. Run the preprocess and cleaner tools to sanitize the raw data:  
- (Try running in PyCharm if you get errors executing in terminal)  
- (venv)$ <code>python prep/preprocess.py</code>  
- (venv)$ <code>python prep/cleaner.py</code>  
- (venv)$ <code>head data/positive/train/happy_trainer.txt</code>  
- **note**:  The last command shows just a sample of the cleaned data.  
- 
- 6. Repeat steps 4 and 5 with a query of "sad"  
- (venv)$ <code>python tweetminer.py -q sad</code>  
+ 6. Repeat steps 4 and 5 with a query of "sad", and a "negative" sentiment:  
+ (venv)$ <code>python tweetminer.py -q sad -s negative</code>  
  Here, the live Twitter stream is accessed and only tweets matching the query "sad" will be collected.  
  A file will be automatically created to store the raw .json data, located here:  
- "data/negative/stream_sad.json"  
+ "data/negative/mined/stream_sad.json"  
  <br></br>    
- **IMPORTANT** - Before re-running the commands from step 5, view the source code for "preprocess
- .py" and "cleaner.py" and make the following changes:  
+ **SCREENSHOTS:** 
  <br></br>  
- * **prep/preprocess.py**  
- ![alt text](\.misc/preprocess1.png "preprocess.py")   
- change to:  
- ![alt text](\.misc/preprocess2.png "preprocess.py")  
+ * **Execution**  
+ ![alt text](\.misc/execute.PNG "launching the data miner")   
  <br></br>  
- * **prep/cleaner.py**  
- ![alt text](\.misc/cleaner1.png "cleaner.py")   
- change to:  
- ![alt text](\.misc/cleaner2.png "cleaner.py")  
+ * **Stop miner, and process data**  
+ ![alt text](\.misc/halt.PNG "process and clean the data")   
  <br></br>  
- Now run:  
- (Try running in PyCharm if you get errors executing in terminal)   
- (venv)$ <code>python prep/preprocess.py</code>  
- (venv)$ <code>python prep/cleaner.py</code>  
- (venv)$ <code>head data/negative/train/sad_trainer.txt</code>  
- **note**:  The last command shows just a sample of the cleaned data.  
+ * **Raw tweet data**  
+ ![alt text](\.misc/raw_tweet.PNG "raw data")  
+ <br></br>  
+ * **Processed text**  
+ ![alt text](\.misc/processed.PNG "processed text")  
+ <br></br>  
+ * **Cleaned text**  
+ ![alt text](\.misc/cleaned.PNG "cleaned text")  
  <br></br>  
  **Run <code>deactivate</code> to exit your virtual environment and return to your default interpreter.**  
  <br></br>
- The 2 files that have been cleaned can now be used as training files for a sentiment analysis machine learning
+ >The 2 files that have been cleaned can now be used as training files for a sentiment analysis machine learning
   system.  The purpose is to train AI to tell the difference between positive and negative sentiments people may have
    on a particular subject.  
     
  <br></br>
    
 ##### *This is a work in progress.  I am developing methods to simplify the current process, and to implement the actual machine learning algorithm.  
-
-
-<br></br>  
-
----  
-
-Still Needed:  
- -> Create branches for different versions  
- -> Refactor source code so no user interaction is required beyond initial execution, i.e. text processing will
-  automatically run in sequence after the data miner has finished.  
- -> Allow user to enter a limit value to specify the amount of data to collect.  CTRL+C can be used to stop collection
-   if a data limit is not specified.  
-
-
 
 
  
