@@ -1,5 +1,11 @@
 #!/usr/bin/env python3
 
+# examples:
+# python tweetminer.py -q happy -s positive -t train -l 200
+# python tweetminer.py -q happy -s positive -t test -l 20
+# python tweetminer.py -q sad -s negative -t train -l 200
+# python tweetminer.py -q sad -s negative -t test -l 20
+
 # Based on Marco Bonzanini's blog "Minig Twitter Data with Python":
 # https://marcobonzanini.com/2015/03/02/mining-twitter-data-with-python-part-1/
 #
@@ -9,9 +15,6 @@
 #
 # For instructions on use, refer to the README.md at:
 # https://github.com/jcdavenport/sentiment_analysis
-
-# TODO:
-#  Add option to specify limit on lines of data to collect.
 
 # TODO:
 #  Add option to import a previously captured .json file for processing.
@@ -59,25 +62,47 @@ def get_parser():
                         "--sentiment",
                         dest="senti",
                         help="positive/negative")
+
+    parser.add_argument("-t",
+                        "--type",
+                        dest="type",
+                        help="type of file: train or test")
+
+    parser.add_argument("-l",
+                        "--limit",
+                        dest="limit",
+                        help="tweet collection limit '# of tweets'")
     return parser
 
 
 class MyListener(StreamListener):
     """Custom StreamListener for streaming data."""
-    def __init__(self, senti, query):
+    def __init__(self, senti, query, f_type, t_limit):
+        super().__init__()
         q_fname = query
         s_fname = senti
+        t_fname = f_type
 
-        self.outfile = "data/%s/mined/stream_%s.json" % (s_fname, q_fname)
+        self.counter = 0
+        self.limit = t_limit
+
+        self.outfile = "data/%s/mined/stream_%s_%s.json" % (s_fname, q_fname, t_fname)
 
     def on_data(self, data):
         try:
             with open(self.outfile, 'a') as f:
-                f.write(data)
-                print(data)
-                return True
 
-        except BaseException as e:
+                if self.counter < self.limit:
+                    f.write(data)
+                    # print(data)
+                    print("Tweets Collected: ", self.counter+1)
+                    self.counter += 1
+                    return True
+                else:
+                    handler()
+                    return False
+
+        except Exception as e:
             print("Error on_data: %s" % str(e))
             time.sleep(5)
         return True
@@ -118,6 +143,38 @@ def parse(cls, api, raw):
     return status
 
 
+def handler():
+    ans = input("\nData mining has been stopped!\n\nWhat would you like to do?\n"
+                "(Enter '1' to process data, or '0' to exit): ")
+    if int(ans) is 1:
+        # process the data
+        try:
+            print("\nProcessing the collected data...")
+            preprocess.tcleaner(input_file, output_file, text_file)
+            time.sleep(2)
+            print("DONE!")
+            time.sleep(1)
+        except BaseException as e:
+            print("Error on_data: %s" % str(e))
+
+        # clean the data
+        try:
+            print("\nCleaning the processed data...")
+            cleaner.clean(text_file, new_file)
+            time.sleep(2)
+            print("DONE!")
+            time.sleep(1)
+
+        except BaseException as e:
+            print("Error on_data: %s" % str(e))
+
+        print("\nThe training file can be found in '" + new_file + "'")
+        sys.exit()
+    else:
+        print("Goodbye!")
+        sys.exit()
+
+
 if __name__ == '__main__':
     parser = get_parser()
     args = parser.parse_args()
@@ -127,48 +184,25 @@ if __name__ == '__main__':
 
     query_fname = format_filename(args.query)
     senti_fname = format_filename(args.senti)
+    type_fname = format_filename(args.type)
+    tweet_limit = int(args.limit)
 
     # prepare file names for modules
-    input_file = "data/%s/mined/stream_%s.json" % (senti_fname, query_fname)
-    output_file = "data/%s/mined/%s_output.json" % (senti_fname, query_fname)
-    text_file = "data/%s/mined/%s2text.txt" % (senti_fname, query_fname)
-    new_file = "data/%s/train/%s_trainer.txt" % (senti_fname, query_fname)
+    input_file = "data/%s/mined/stream_%s_%s.json" % (senti_fname, query_fname, type_fname)
+    output_file = "data/%s/mined/%s_%s_output.json" % (senti_fname, query_fname, type_fname)
+    text_file = "data/%s/mined/%s2text_%s.txt" % (senti_fname, query_fname, type_fname)
+    new_file = "data/%s/%s/%s_%ser.txt" % (senti_fname, type_fname, query_fname, type_fname)
 
     try:
         # start the data mining
-        twitter_stream = Stream(auth, MyListener(senti_fname, query_fname))
+        twitter_stream = Stream(auth, MyListener(senti_fname, query_fname, type_fname, tweet_limit))
         twitter_stream.filter(track=[args.query])
+        # for mutliple filters: track=[args.query1, args.query2]
 
     # Listening for CTRL+C to stop data miner and either:
     # - continue to the processing phase, or
     # - exit the program
     except KeyboardInterrupt:
-        ans = input("\nData mining has been stopped!\n\nWhat would you like to do?\n"
-                    "(Enter '1' to process data, or '0' to exit): ")
-        if int(ans) is 1:
-            # process the data
-            try:
-                print("\nProcessing the collected data...")
-                preprocess.tcleaner(input_file, output_file, text_file)
-                time.sleep(2)
-                print("DONE!")
-                time.sleep(1)
-            except BaseException as e:
-                print("Error on_data: %s" % str(e))
-
-            # clean the data
-            try:
-                print("\nCleaning the processed data...")
-                cleaner.clean(text_file, new_file)
-                time.sleep(2)
-                print("DONE!")
-                time.sleep(1)
-
-            except BaseException as e:
-                print("Error on_data: %s" % str(e))
-
-            print("\nThe training file can be found in '" + new_file + "'")
-            sys.exit()
-        else:
-            print("Goodbye!")
-            sys.exit()
+        handler()
+    finally:
+        sys.exit()
