@@ -432,7 +432,7 @@ def handler():
         except BaseException as e:
             print("Error on_data: %s" % str(e))
 
-        print("\nThe training file can be found in '" + new_file + "'")
+        print("\nThe generated file can be found in '" + new_file + "'")
         ender()
     else:
         menu()
