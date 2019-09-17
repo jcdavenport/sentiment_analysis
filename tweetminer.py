@@ -67,14 +67,14 @@ def authority():
 
 def menu():
     print()
-    print("|***************MAIN MENU*****************|")
-    # time.sleep(1)
+    print("|************MAIN MENU**************|")
     print()
 
     choice = input("""
     A: Create Training Data Set
     B: Create Testing Data Set
     C: Analyze Data
+    D: Run Demo Analysis
     Q: Quit
 
     Please enter your choice: """)
@@ -85,6 +85,8 @@ def menu():
         tester()
     elif choice == "C" or choice == "c":
         analyze()
+    elif choice == "D" or choice == "d":
+        demo_analysis()
     elif choice == "Q" or choice == "q":
         quitter()
     else:
@@ -275,6 +277,31 @@ def analyze():
 
     analysis.analyze_data(pos_train_file, neg_train_file,
                           pos_test_file, neg_test_file)
+
+    ender()
+
+
+def demo_analysis():
+    print("\n|************Demo Analysis**************|")
+    print("       !! Using Sample Datasets !!       ")
+    print("\n\nNote:\n"
+          "This operation will ONLY run the accuracy analysis!\n"
+          "These samples are of data previously captured using this tool.\n")
+
+    input("(Press Enter to continue...)")
+    demo_pos_train = ".sample-datasets/happy_trainer_demo.txt"
+    demo_neg_train = ".sample-datasets/sad_trainer_demo.txt"
+    demo_pos_test = ".sample-datasets/happy_tester_demo.txt"
+    demo_neg_test = ".sample-datasets/sad_tester_demo.txt"
+
+    time.sleep(3)
+    print("\nInitializing the machine...")
+    time.sleep(3)
+    print("\nThe AI is becoming aware...")
+    time.sleep(3)
+
+    analysis.analyze_data(demo_pos_train, demo_neg_train,
+                          demo_pos_test, demo_neg_test)
 
     ender()
 

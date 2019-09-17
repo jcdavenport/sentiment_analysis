@@ -81,8 +81,8 @@ def analyze_data(pos_train, neg_train, pos_test, neg_test):
 
     print("\n\nResults:")
     print("######################################")
-    print("## Total accuracy: ", end="")
+    print(" Total accuracy: ", end="")
     print('%.3f' % tot_accuracy, end="")
     print("%", end="")
-    print(' (%d/%d)! ##' % (accuracy, total))
+    print(' (%d/%d)!  ' % (accuracy, total))
     print("######################################")
