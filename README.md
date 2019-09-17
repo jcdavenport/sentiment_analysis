@@ -22,7 +22,8 @@ Shortened versions of the first two training files.  Collected using the same pr
   * hyperlinks
   * stopwords based on the Natural Language Toolkit (NLTK)  
   
-* **Cleaner Module** - Formats the results into a .txt file and removes blank lines, leading whitespace, etc.
+* **Cleaner Module** - Formats the results into a .txt file and removes blank lines, leading whitespace, etc.  
+* **Analysis Module** - Machine learning algorithm for testing sentiment analysis accuracy.
 
 ---
 #### PREREQ:  

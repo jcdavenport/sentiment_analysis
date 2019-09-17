@@ -1,13 +1,8 @@
 """
-An implementation of the Twitter analysis tool mentioned on
+Machine Learning Algorithm for Testing Sentiment Analysis Accuracy
+
+inspired by:
 http://www.laurentluce.com/posts/twitter-sentiment-analysis-using-python-and-nltk/
-
-happy.txt contains 80 tweets that are happy (positive),
-sad.txt contains 80 tweets that are sad (negative).
-
-happy_test.txt and sad_test.txt contains 10 positive
-and 10 negative tweets respectively to test the
-classifier.
 """
 import nltk
 from nltk.classify.naivebayes import NaiveBayesClassifier
