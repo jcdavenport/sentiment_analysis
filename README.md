@@ -1,6 +1,7 @@
 # Sentiment Analysis
-**Text pre-processing, and sentiment analysis using datasets captured from Twitter live stream.**  
-:sunglasses:  
+**Text pre-processing, and sentiment analysis accuracy testing using datasets captured from Twitter live stream.**  
+VERSION: 1.0 :sunglasses:  
+
 This tool will produce 2 sets of text files:  
 **TRAINING SET(2 files):**  
 The *first* file will contain tweets with a generally **positive** sentiment, such as "I am happy".  

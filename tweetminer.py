@@ -3,7 +3,7 @@
 # run:
 # python tweetminer.py
 
-# Based on Marco Bonzanini's blog "Minig Twitter Data with Python":
+# Inspired by Marco Bonzanini's blog "Minig Twitter Data with Python":
 # https://marcobonzanini.com/2015/03/02/mining-twitter-data-with-python-part-1/
 #
 # Modified with customized functions and
