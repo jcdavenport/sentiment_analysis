@@ -82,8 +82,8 @@ $ <code>cd sentiment_analysis</code>
  4. Execute the script to access the tool's main menu:  
  (venv)$ <code>python tweetminer.py</code>   
  
- 5. Select an option from the menu to create either a training or testing data set, analyze the data, or exit the
-  program:  
+ 5. Select an option from the menu to create either a training or testing data set, analyze the data, run a demo
+  analysis, or exit the program:  
  ![alt text](\.misc/main_menu.PNG "main menu")  
  <br></br>  
  In this example, the live Twitter stream will be accessed, and a limit of 100 (more is always better, this is just
@@ -108,7 +108,9 @@ $ <code>cd sentiment_analysis</code>
    ![alt text](\.misc/create_testing.PNG "testing data")  
    <br></br>  
  
- 8. Analyze and test accuracy. (***In Progress...***)
+ 8. Analyze and test accuracy. Option "C" from the main menu. When all 4 required files have been created (2-training
+  and 2-testing), the machine learning algorithm can be run to test the accuracy of the sentiment analysis.  
+  ![alt text](\.misc/analysis.PNG "analyzing data")
  
  <br></br>  
  <br></br>    
