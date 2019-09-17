@@ -92,7 +92,7 @@ $ <code>cd sentiment_analysis</code>
  "data/positive/mined/stream_happy.json"   
  ![alt text](\.misc/create_training.PNG "training data")  
   <br></br>  
- **Now process the data:**  
+ Now process the data:  
  ![alt text](\.misc/capture.PNG "training data")  
  <br></br>  
  
