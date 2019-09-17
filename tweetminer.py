@@ -14,10 +14,10 @@
 # https://github.com/jcdavenport/sentiment_analysis
 
 # TODO:
-#  Update README for main menu changes.
+#  Add option to import a previously captured .json file for processing.
 
 # TODO:
-#  Add option to import a previously captured .json file for processing.
+#  Assign an index key for different train/test data sets.
 
 # TODO:
 #  Add option to collect and store data in a database.
@@ -36,10 +36,11 @@ import string
 import config
 import json
 import sys
+import os
 import nltk.downloader
-# import argparse
 
 from prep import preprocess, cleaner
+from analyze import analysis
 
 print("Downloading nltk packages...")
 nltk.download('punkt')
@@ -48,10 +49,13 @@ nltk.download('stopwords')
 print("DONE!\nNow launching program menu...")
 time.sleep(2)
 
+# to keep records of each data process
 input_file = ""
 output_file = ""
 text_file = ""
 new_file = ""
+pos_file = ""
+neg_file = ""
 
 
 def authority():
@@ -63,7 +67,7 @@ def authority():
 
 def menu():
     print()
-    print("************MAIN MENU**************")
+    print("|***************MAIN MENU*****************|")
     # time.sleep(1)
     print()
 
@@ -90,7 +94,7 @@ def menu():
 
 
 def trainer():
-    print("\n************Create Training Data Set**************")
+    print("\n|************Create Training Data Set**************|")
     try:
         query_fname = input("\nWhat sentiment keyword would you like to set as the filter?: ")
         q_name = format_filename(query_fname)
@@ -164,7 +168,7 @@ def trainer():
 
 
 def tester():
-    print("\n************Create Testing Data Set**************")
+    print("\n|************Create Testing Data Set**************|")
     try:
         query_fname = input("\nWhat sentiment keyword would you like to set as the filter?: ")
         # need some sort of input validation here
@@ -240,10 +244,50 @@ def tester():
 
 
 def analyze():
-    # placeholder
-    print("Analyze...")
+    print("\n|************Machine Learning Analysis**************|")
+
+    # use some index key here to find data sets
+    pos_train_file = "data/positive/train/happy_trainer.txt"
+    if not os.path.isfile(pos_train_file):
+        print("{} does not exist ".format(pos_train_file))
+        return
+
+    pos_test_file = "data/positive/test/happy_tester.txt"
+    if not os.path.isfile(pos_test_file):
+        print("{} does not exist ".format(pos_test_file))
+        return
+
+    neg_train_file = "data/negative/train/sad_trainer.txt"
+    if not os.path.isfile(neg_train_file):
+        print("{} does not exist ".format(neg_train_file))
+        return
+
+    neg_test_file = "data/negative/test/sad_tester.txt"
+    if not os.path.isfile(neg_test_file):
+        print("{} does not exist ".format(neg_test_file))
+        return
+
     time.sleep(3)
-    menu()
+    print("\nInitializing the machine...")
+    time.sleep(3)
+    print("\nThe AI is becoming aware...")
+    time.sleep(3)
+
+    analysis.analyze_data(pos_train_file, neg_train_file,
+                          pos_test_file, neg_test_file)
+
+    ender()
+
+
+def ender():
+    nav = input("\nWhat would you like to do?\n(1=MainMenu, 0=Exit): ")
+    if int(nav) is 1:
+        menu()
+    elif int(nav) is 0:
+        sys.exit()
+    else:
+        print("Pick either 1 or 0!")
+        ender()
 
 
 def quitter():
@@ -365,17 +409,6 @@ def handler():
         ender()
     else:
         menu()
-
-
-def ender():
-    nav = input("\nWhat would you like to do?\n(1=MainMenu, 0=Exit): ")
-    if int(nav) is 1:
-        menu()
-    elif int(nav) is 0:
-        sys.exit()
-    else:
-        print("Pick either 1 or 0!")
-        ender()
 
 
 if __name__ == '__main__':
