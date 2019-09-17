@@ -1,15 +1,19 @@
 # Sentiment Analysis
 **Text pre-processing, and sentiment analysis using datasets captured from Twitter live stream.**  
 :sunglasses:  
-Currently, this tool will produce 2 text files:  
+This tool will produce 2 sets of text files:  
+**TRAINING SET(2 files):**  
 The *first* file will contain tweets with a generally **positive** sentiment, such as "I am happy".  
 The *second* file will contain tweets with a generally **negative** sentiment, like "I am sad".  
-> These files will be used to train a machine learning algorithm.  
+**TESTING SET(2 files):**  
+Shortened versions of the first two training files.  Collected using the same process.     
+> These files will be used to train a machine learning algorithm, and test it's accuracy.  
 >The goal is to assist Artificial Intelligence(AI) development by leveraging sentimental analysis to determine if a
 > human's statement has a positive or negative feeling.
 ---
 
 #### CONTENTS:  
+* **Interactive Command Line Menu** - Gives the user greater control over the whole process.  
 * **Mining Tool** - For collecting tweets from the Twitter live-stream.  The real-time raw data is stored in .json
  format.  
 * **Pre-processing Module** - Extracts the actual tweet text from the raw data.  This module also removes:  
@@ -75,31 +79,41 @@ $ <code>cd sentiment_analysis</code>
  (venv)$ <code>pip install -r requirements.txt</code>  
  <b>!! Make sure the "config.py" file has been created as mentioned in the PREREQ !!</b>  
  
- 4. Start harvesting raw tweet data from the live Twitter stream:  
- (venv)$ <code>python tweetminer.py -q happy -s positive</code>  
- -The "-q" option specifies a specific query or filter for the tweets being collected.  
- -The "-s" specifies the sentiment associated with the query (either positive or negative).  
+ 4. Execute the script to access the tool's main menu:  
+ (venv)$ <code>python tweetminer.py</code>   
  
- 5. Let this run for a few minutes, then press "**CTRL+C**" to stop execution.  
- Follow the prompts in the terminal to either continue to processing, or exit the program.  
- In this example, the live Twitter stream is accessed, and only tweets matching the query "happy" will be collected. 
- A file will be automatically created to store the raw .json data, located here:  
- "data/positive/mined/stream_happy.json"  
+ 5. Select an option from the menu to create either a training or testing data set, analyze the data, or exit the
+  program:  
+ ![alt text](\.misc/main_menu.PNG "main menu")  
+ <br></br>  
+ In this example, the live Twitter stream will be accessed, and a limit of 100 (more is always better, this is just
+  an example) tweets matching the query "happy" will be collected.  
+ A file will be automatically created to store the raw .json data, i.e.:  
+ "data/positive/mined/stream_happy.json"   
+ ![alt text](\.misc/create_training.PNG "training data")  
+  <br></br>  
+ **Now process the data:**  
+ ![alt text](\.misc/capture.PNG "training data")  
+ <br></br>  
  
- 6. Repeat steps 4 and 5 with a query of "sad", and a "negative" sentiment:  
- (venv)$ <code>python tweetminer.py -q sad -s negative</code>  
- Here, the live Twitter stream is accessed and only tweets matching the query "sad" will be collected.  
- A file will be automatically created to store the raw .json data, located here:  
+ 6. Return to the main menu, and repeat step 5 with a query of "sad", and a "negative" sentiment:  
+ Be sure to process the data after it has been collected.  
+ A file will be automatically created to store the raw .json data, i.e.:  
  "data/negative/mined/stream_sad.json"  
+ ![alt text](\.misc/create_training_sad.PNG "training data")  
+ <br></br>   
+ 
+ 7. Back at the main menu, follow a process similar to steps 5 and 6 to create the ***testing*** data set.  
+ Note that the tweet limits for this set will be significantly shorter than the previous set.  
+   ![alt text](\.misc/create_testing.PNG "testing data")  
+   <br></br>  
+ 
+ 8. Analyze and test accuracy. (***In Progress...***)
+ 
+ <br></br>  
  <br></br>    
- **SCREENSHOTS:** 
- <br></br>  
- * **Execution**  
- ![alt text](\.misc/execute.PNG "launching the data miner")   
- <br></br>  
- * **Stop miner, and process data**  
- ![alt text](\.misc/halt.PNG "process and clean the data")   
- <br></br>  
+ **{DATA SAMPLES}:**  
+ 
  * **Raw tweet data**  
  ![alt text](\.misc/raw_tweet.PNG "raw data")  
  <br></br>  
@@ -111,13 +125,11 @@ $ <code>cd sentiment_analysis</code>
  <br></br>  
  **Run <code>deactivate</code> to exit your virtual environment and return to your default interpreter.**  
  <br></br>
- >The 2 files that have been cleaned can now be used as training files for a sentiment analysis machine learning
-  system.  The purpose is to train AI to tell the difference between positive and negative sentiments people may have
-   on a particular subject.  
+>The data that has been processed can now be used for training or testing a sentiment analysis machine
+> learning system.  The purpose is to train AI to tell the difference between positive and negative sentiments people
+> may have on a particular subject.  
     
  <br></br>
-   
-##### *This is a work in progress.  I am developing methods to simplify the current process, and to implement the actual machine learning algorithm.  
 
 
  

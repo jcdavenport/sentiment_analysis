@@ -14,6 +14,9 @@
 # https://github.com/jcdavenport/sentiment_analysis
 
 # TODO:
+#  Update README for main menu changes.
+
+# TODO:
 #  Add option to import a previously captured .json file for processing.
 
 # TODO:
@@ -142,7 +145,10 @@ def trainer():
         time.sleep(3)
         trainer()
     else:
+        print("Initializing tweet capture...")
+        time.sleep(2)
         file_ops(s_name, q_name, t_name)
+        print("GO!!!")
 
     try:
         # start the data mining
@@ -160,7 +166,7 @@ def trainer():
 def tester():
     print("\n************Create Testing Data Set**************")
     try:
-        query_fname = input("What sentiment keyword would you like to set as the filter?: ")
+        query_fname = input("\nWhat sentiment keyword would you like to set as the filter?: ")
         # need some sort of input validation here
         q_name = format_filename(query_fname)
     except IOError as e:
@@ -215,7 +221,10 @@ def tester():
         time.sleep(3)
         tester()
     else:
+        print("Initializing tweet capture...")
+        time.sleep(2)
         file_ops(s_name, q_name, t_name)
+        print("GO!!!")
 
     try:
         # start the data mining
