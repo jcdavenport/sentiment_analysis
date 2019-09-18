@@ -38,8 +38,6 @@ import setup
 import json
 import sys
 import os
-import platform
-import nltk.downloader
 
 from prep import preprocess, cleaner
 from analyze import analysis

@@ -2,7 +2,8 @@ import os
 import sys
 import platform
 import time
-import nltk.downloader
+# import tweetminer
+import nltk
 
 
 def setup():
@@ -71,3 +72,8 @@ def setup():
     print("DONE!\nNow launching main menu...")
     time.sleep(2)
     return
+
+
+if __name__ == '__main__':
+    setup()
+    # tweetminer.menu()
