@@ -34,20 +34,16 @@ from tweepy.streaming import StreamListener
 import time
 import string
 import config
+import setup
 import json
 import sys
 import os
+import platform
 import nltk.downloader
 
 from prep import preprocess, cleaner
 from analyze import analysis
 
-print("Downloading nltk packages...")
-nltk.download('punkt')
-nltk.download('words')
-nltk.download('stopwords')
-print("DONE!\nNow launching program menu...")
-time.sleep(2)
 
 # to keep records of each data process
 input_file = ""
@@ -439,4 +435,5 @@ def handler():
 
 
 if __name__ == '__main__':
+    setup.setup()
     menu()
