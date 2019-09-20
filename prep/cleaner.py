@@ -10,8 +10,6 @@ import nltk
 
 from nltk import word_tokenize
 
-words = set(nltk.corpus.words.words())
-
 
 #######################################################
 # [Cleaning the text file]                            #
@@ -19,6 +17,8 @@ words = set(nltk.corpus.words.words())
 # and removal of undesired whitespace.                #
 #######################################################
 def clean(txt_file, n_file):
+    
+    words = set(nltk.corpus.words.words())
 
     if not os.path.isfile(txt_file):
         print("{} does not exist ".format(txt_file))

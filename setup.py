@@ -43,10 +43,10 @@ def setup():
         lin_venv = os.getenv('VIRTUAL_ENV')
 
         # get the current python version
-        pyver = "python" + str(sys.version_info[0])+"."+str(sys.version_info[1])
+        # pyver = "python" + str(sys.version_info[0])+"."+str(sys.version_info[1])
 
         # point to NLTK_DATA in the venv
-        lin_data = lin_venv + '/lib/' + pyver + '/nltk_data'
+        lin_data = lin_venv + '/lib/nltk_data'
         os.environ['NLTK_DATA'] = lin_data
 
         try:
